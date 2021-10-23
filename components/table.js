@@ -4,6 +4,8 @@ import { Table, Input, Button, Space } from 'antd';
 import { SearchOutlined } from "@ant-design/icons";
 import dateFormat from '../libs/DateFormat'
 import EditComponent from './edit';
+import Link from 'next/link';
+import CurrencyFormatter from "../libs/CurrencyFormatter";
 
 function table({ dataList, deleteData, area, size, currentData, updateData, editData }) {
   dataList && dataList.map((item) => item.tgl_parsed = dateFormat(item.tgl_parsed, "date"));
@@ -81,9 +83,14 @@ function table({ dataList, deleteData, area, size, currentData, updateData, edit
     {
       title: 'Komoditas',
       dataIndex: 'komoditas',
+      item: ['uuid'],
       key: 'komoditas',
-      render: text => <a>{text}</a>,
       ...getColumnSearchProps("komoditas"),
+      render: (text, item) => {
+        return (
+          <Link href="/[uuid]/detail" as={`/${item.uuid}/detail`}>{text}</Link>
+        )
+      },
     },
     {
       title: 'Provinsi',
@@ -105,10 +112,11 @@ function table({ dataList, deleteData, area, size, currentData, updateData, edit
       key: 'size',
     },
     {
-      title: 'Price',
+      title: 'Harga',
       dataIndex: 'price',
       key: 'price',
       sorter: (a, b) => a.price - b.price,
+      render: (text) => (CurrencyFormatter(text))
     },
     {
       title: 'Tanggal',

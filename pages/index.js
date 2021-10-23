@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { Card, Row } from 'antd';
+import { Card, Row, PageHeader } from 'antd';
 import AddComponent from '../components/add';
 import TableComponent from "../components/table";
+import { useRouter } from 'next/router'
 
 function index({ list, area, size }) {
+  const router = useRouter()
   const [dataList, setDataList] = useState(list)
 
   const addData = (item) => {
@@ -49,9 +51,14 @@ function index({ list, area, size }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <PageHeader
+        className="pageStyle"
+        title="Commodity Resources"
+      />
+
       <Row className="rowstyle">
-        <Card title="Card title" bordered={false}
-          extra={<AddComponent addData={addData} area={area} size={size} />}
+        <Card title="Commodity List" bordered={false}
+          extra={<AddComponent addData={addData} area={area} size={size}/>}
         >
           <TableComponent dataList={dataList} deleteData={deleteData} area={area} size={size} currentData={currentData} updateData={updateData} editData={editData}/>
         </Card>

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  commodities:
+    container_name: commodities
+    image: aldimustafri/commodities
+    build: ./
+    ports:
+      - "9350:9350"
+    stdin_open: true
+
+    volumes:
+       - .:/app
+    env_file: ./.env
+    networks:
+      - linkednetwork
+    restart_policy:
+      condition: on-failure
+  
+networks:
+  linkednetwork:
