@@ -14,8 +14,6 @@ services:
     env_file: ./.env
     networks:
       - linkednetwork
-    restart_policy:
-      condition: on-failure
   
 networks:
   linkednetwork:

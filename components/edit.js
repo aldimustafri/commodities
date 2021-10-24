@@ -27,7 +27,7 @@ function edit(props) {
     const getdate = new Date();
 
     const dataValue = {
-      uuid: uuidv4(),
+      uuid:  getData.uuid,
       komoditas: values.komoditas || getData.komoditas,
       area_provinsi: values.area_provinsi || getData.area_provinsi,
       area_kota: values.area_kota || getData.area_kota,

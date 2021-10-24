@@ -8,7 +8,6 @@ import DollarFormatter from "../../libs/DollarFormatter";
 import { useRouter } from 'next/router'
 
 function detail({ listData, valuation }) {
-  console.log('valuation: ', valuation)
   const router = useRouter()
   return (
     <div>
